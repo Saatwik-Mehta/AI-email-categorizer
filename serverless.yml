@@ -1,0 +1,15 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: saatwik
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: serverless-app
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: ai-email-categorizer
+
+provider:
+  name: aws
+  runtime: python3.12
+
+functions:
+  rateHandler:
+    handler: handler.run
+
