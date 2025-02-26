@@ -13,3 +13,6 @@ functions:
   rateHandler:
     handler: handler.run
 
+
+plugins:
+  - serverless-python-requirements
