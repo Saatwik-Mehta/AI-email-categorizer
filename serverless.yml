@@ -11,7 +11,12 @@ provider:
 
 functions:
   rateHandler:
-    handler: handler.run
+    handler: handler.lambda_function
+    events:
+      - http:
+          path: /email
+          method: post
+          cors: true
 
 
 plugins:
