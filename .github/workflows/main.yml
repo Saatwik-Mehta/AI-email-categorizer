@@ -29,11 +29,11 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: ${{matrix.python-version}}
-      # - name: Create layers
-      #   run: |
-      #       mkdir -p layer/python/Utils # creating new directory for layers.
-      #       cp -R ./Utils/ layer/python/ # copying Utils folder into layers/python/ folder
-      #       pip install -r ./Utils/requirements.txt --target ./layer/python/
+      - name: Create layers
+        run: |
+            mkdir -p layer/python/Utils # creating new directory for layers.
+            cp -R ./Utils/ layer/python/ # copying Utils folder into layers/python/ folder
+            pip install -r ./Utils/requirements.txt --target ./layer/python/
       - run: npm install
       - name: serverless deploy
         uses: serverless/github-action@v4

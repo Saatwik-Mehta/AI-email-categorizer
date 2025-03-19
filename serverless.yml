@@ -10,9 +10,13 @@ provider:
   runtime: python3.12
   region: ap-south-1 #Mumbai Region
 
+layers: ${file(./layers.yml)}
+  
 functions:
   emailCategorizer:
     handler: handler.lambda_function
+    layers: 
+      - !Ref UtilsLambdaLayer
     events:
       - http:
           path: /email
