@@ -1,0 +1,8 @@
+Utils:
+  path: layer
+  name: Utils
+  description: Utility layer for the application
+  compatibleRuntimes:
+    - python3.11
+    - python3.12
+  retain: False

@@ -4,15 +4,23 @@ org: saatwik
 app: serverless-app
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: ai-email-categorizer
-
+configValidationMode: error
 provider:
   name: aws
   runtime: python3.12
   region: ap-south-1 #Mumbai Region
 
+layers: ${file(./layers.yml)}
+  
 functions:
-  rateHandler:
+  emailCategorizer:
     handler: handler.lambda_function
+    package: 
+      patterns:
+        - "!**"
+        - "handler.py"
+    layers: 
+      - !Ref UtilsLambdaLayer
     events:
       - http:
           path: /email
