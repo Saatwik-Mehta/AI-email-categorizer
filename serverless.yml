@@ -11,7 +11,7 @@ provider:
   region: ap-south-1 #Mumbai Region
 
 functions:
-  rateHandler:
+  emailCategorizer:
     handler: handler.lambda_function
     events:
       - http:
