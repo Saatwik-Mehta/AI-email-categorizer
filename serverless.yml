@@ -10,12 +10,21 @@ provider:
   runtime: python3.12
   region: ap-south-1 #Mumbai Region
 
+package:
+  individually: true
+  patterns:
+    - '!node_modules/**'
+    - '!package-lock.json'
+    - '!package.json'
+    
+
 layers: ${file(./layers.yml)}
   
 functions:
   emailCategorizer:
     handler: handler.lambda_function
     package: 
+      individually: true
       patterns:
         - "!**"
         - "handler.py"
