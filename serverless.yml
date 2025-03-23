@@ -9,6 +9,9 @@ provider:
   name: aws
   runtime: python3.12
   region: ap-south-1 #Mumbai Region
+  iam:
+    role:
+      statements: ${file(./lambdapolicy.yml)}
 
 package:
   individually: true

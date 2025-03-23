@@ -1,0 +1,4 @@
+# Allow functions to list all buckets
+- Effect: Allow
+  Action: "comprehend:DetectSentiment"
+  Resource: "*"
