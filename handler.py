@@ -27,7 +27,7 @@ def lambda_function(event, context):
         response = comprehend_client.detect_sentiment(
             Text=plain_email_content, LanguageCode="en"
         )
-        # 'POSITIVE'|'NEGATIVE'|'NEUTRAL'|'MIXED'
+        # Sentiments: 'POSITIVE'|'NEGATIVE'|'NEUTRAL'|'MIXED'
         email_sentiment = response["Sentiment"].lower()
         logger.info("Email Sentiment: %s", email_sentiment)
         # We will categorize the email based on the sentiments:
