@@ -1,0 +1,44 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: saatwik
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: serverless-app
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: ai-email-categorizer
+configValidationMode: error
+provider:
+  name: aws
+  runtime: python3.12
+  region: ap-south-1 #Mumbai Region
+  iam:
+    role:
+      statements: ${file(./lambdapolicy.yml)}
+
+package:
+  individually: true
+  patterns:
+    - '!node_modules/**'
+    - '!package-lock.json'
+    - '!package.json'
+    
+
+layers: ${file(./layers.yml)}
+  
+functions:
+  emailCategorizer:
+    handler: handler.lambda_function
+    package: 
+      individually: true
+      patterns:
+        - "!**"
+        - "handler.py"
+    layers: 
+      - !Ref UtilsLambdaLayer
+    events:
+      - http:
+          path: /email
+          method: post
+          cors: true
+
+
+plugins:
+  - serverless-python-requirements
